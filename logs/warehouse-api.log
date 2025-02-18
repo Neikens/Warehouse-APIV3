@@ -1,0 +1,115 @@
+2025-02-18 04:03:08 [main] INFO  com.warehouse.api.ApplicationKt - Starting ApplicationKt using Java 17.0.14 with PID 533831 (/opt/warehouse-api/build/classes/kotlin/main started by admin1 in /opt/warehouse-api)
+2025-02-18 04:03:08 [main] DEBUG com.warehouse.api.ApplicationKt - Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-02-18 04:03:08 [main] INFO  com.warehouse.api.ApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-02-18 04:03:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-18 04:03:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2025-02-18 04:03:11 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-18 04:03:11 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-18 04:03:11 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-02-18 04:03:11 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-18 04:03:11 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2889 ms
+2025-02-18 04:03:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-18 04:03:12 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26f75d9c
+2025-02-18 04:03:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-18 04:03:12 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-02-18 04:03:12 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-02-18 04:03:12 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-02-18 04:03:12 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/warehouse_db (PostgreSQL 16.6)
+2025-02-18 04:03:12 [main] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 16.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-02-18 04:03:12 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.030s)
+2025-02-18 04:03:12 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2025-02-18 04:03:12 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-02-18 04:03:12 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-18 04:03:12 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-02-18 04:03:12 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-18 04:03:13 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-18 04:03:13 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-18 04:03:14 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-18 04:03:14 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists warehouses 
+       add column capacity float(53) not null
+2025-02-18 04:03:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:03:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-18 04:03:16 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-02-18 04:03:16 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@fb69ab1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ac3c6cd, org.springframework.security.web.context.SecurityContextHolderFilter@222af5ff, org.springframework.security.web.header.HeaderWriterFilter@675c1335, org.springframework.web.filter.CorsFilter@9223122, org.springframework.security.web.authentication.logout.LogoutFilter@68c9cf93, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@45add64c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17478cec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4e67f0a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c2b7322, org.springframework.security.web.access.ExceptionTranslationFilter@17f4276b, org.springframework.security.web.access.intercept.AuthorizationFilter@3d70dab8]
+2025-02-18 04:03:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-02-18 04:03:17 [main] INFO  com.warehouse.api.ApplicationKt - Started ApplicationKt in 9.539 seconds (process running for 10.227)
+2025-02-18 04:03:22 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:03:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-02-18 04:03:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-02-18 04:14:57 [main] INFO  com.warehouse.api.ApplicationKt - Starting ApplicationKt using Java 17.0.14 with PID 537457 (/opt/warehouse-api/build/classes/kotlin/main started by admin1 in /opt/warehouse-api)
+2025-02-18 04:14:57 [main] DEBUG com.warehouse.api.ApplicationKt - Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-02-18 04:14:57 [main] INFO  com.warehouse.api.ApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-02-18 04:14:59 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-18 04:14:59 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 4 JPA repository interfaces.
+2025-02-18 04:15:00 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-18 04:15:00 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-18 04:15:00 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-02-18 04:15:00 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-18 04:15:00 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2969 ms
+2025-02-18 04:15:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-18 04:15:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@749d7c01
+2025-02-18 04:15:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-18 04:15:01 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-02-18 04:15:01 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-02-18 04:15:01 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-02-18 04:15:01 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/warehouse_db (PostgreSQL 16.6)
+2025-02-18 04:15:01 [main] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 16.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-02-18 04:15:01 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.027s)
+2025-02-18 04:15:02 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2025-02-18 04:15:02 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-02-18 04:15:02 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-18 04:15:02 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-02-18 04:15:02 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-18 04:15:02 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-18 04:15:02 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-18 04:15:03 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-18 04:15:03 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:15:05 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-18 04:15:06 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-02-18 04:15:06 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@47c14360, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a90c15e, org.springframework.security.web.context.SecurityContextHolderFilter@7c8d382e, org.springframework.security.web.header.HeaderWriterFilter@3c971473, org.springframework.web.filter.CorsFilter@55a46bf3, org.springframework.security.web.authentication.logout.LogoutFilter@59294f29, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5a429813, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c251258, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1098c1b1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@324c3ed5, org.springframework.security.web.access.ExceptionTranslationFilter@76a2db3f, org.springframework.security.web.access.intercept.AuthorizationFilter@76a41af0]
+2025-02-18 04:15:07 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-02-18 04:15:07 [main] INFO  com.warehouse.api.ApplicationKt - Started ApplicationKt in 10.513 seconds (process running for 11.188)
+2025-02-18 04:17:37 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:17:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-02-18 04:17:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-02-18 04:21:33 [main] INFO  com.warehouse.api.ApplicationKt - Starting ApplicationKt using Java 17.0.14 with PID 539884 (/opt/warehouse-api/build/classes/kotlin/main started by admin1 in /opt/warehouse-api)
+2025-02-18 04:21:33 [main] DEBUG com.warehouse.api.ApplicationKt - Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-02-18 04:21:33 [main] INFO  com.warehouse.api.ApplicationKt - No active profile set, falling back to 1 default profile: "default"
+2025-02-18 04:21:35 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-18 04:21:35 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 74 ms. Found 4 JPA repository interfaces.
+2025-02-18 04:21:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-02-18 04:21:36 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-02-18 04:21:36 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-02-18 04:21:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-02-18 04:21:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2967 ms
+2025-02-18 04:21:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-18 04:21:37 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@69a73867
+2025-02-18 04:21:37 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-18 04:21:37 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-02-18 04:21:37 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-02-18 04:21:37 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-02-18 04:21:37 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/warehouse_db (PostgreSQL 16.6)
+2025-02-18 04:21:37 [main] WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 16.6 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-02-18 04:21:37 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.027s)
+2025-02-18 04:21:37 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+2025-02-18 04:21:37 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+2025-02-18 04:21:37 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-18 04:21:37 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-02-18 04:21:37 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-18 04:21:38 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-18 04:21:38 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-18 04:21:39 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-18 04:21:39 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:21:41 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-18 04:21:41 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-02-18 04:21:42 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@173e4b75, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@78f2cab9, org.springframework.security.web.context.SecurityContextHolderFilter@7d6b0636, org.springframework.security.web.header.HeaderWriterFilter@5c4404dd, org.springframework.web.filter.CorsFilter@32441ed4, org.springframework.security.web.authentication.logout.LogoutFilter@5c902a83, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@74f6237, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42a940dc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74aa29c7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fc2197d, org.springframework.security.web.access.ExceptionTranslationFilter@20b56542, org.springframework.security.web.access.intercept.AuthorizationFilter@10374cae]
+2025-02-18 04:21:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-02-18 04:21:43 [main] INFO  com.warehouse.api.ApplicationKt - Started ApplicationKt in 10.346 seconds (process running for 10.835)
+2025-02-18 04:22:40 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-18 04:22:40 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-02-18 04:22:40 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-02-18 04:22:41 [http-nio-8080-exec-10] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1100 ms
+2025-02-18 04:22:57 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-18 04:22:57 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-02-18 04:22:57 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
