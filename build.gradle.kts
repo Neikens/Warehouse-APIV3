@@ -31,14 +31,13 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.postgresql:postgresql")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
-    
+    implementation("com.mysql:mysql-connector-j:8.0.33")
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("com.zaxxer:HikariCP:5.0.1")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.h2database:h2")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("com.h2database:h2")
-
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
-
 }
 
 tasks.withType<KotlinCompile> {
