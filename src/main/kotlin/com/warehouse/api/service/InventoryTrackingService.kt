@@ -1,8 +1,7 @@
 package com.warehouse.api.service
 
-import com.warehouse.api.model.Product
-import com.warehouse.api.model.Warehouse
-import com.warehouse.api.repository.ProductRepository
+import com.warehouse.api.model.InventoryItem
+import com.warehouse.api.repository.InventoryItemRepository
 import com.warehouse.api.repository.WarehouseRepository
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
@@ -10,42 +9,43 @@ import java.time.LocalDateTime
 
 @Service
 class InventoryTrackingService(
-    private val productRepository: ProductRepository,
+    private val inventoryItemRepository: InventoryItemRepository,
     private val warehouseRepository: WarehouseRepository,
     private val metricsService: MetricsService
 ) {
-    fun getInventoryLevels(warehouseId: Long): Map<String, BigDecimal> {
-        val warehouse = warehouseRepository.findById(warehouseId)
-            .orElseThrow { RuntimeException("Warehouse not found") }
-            
-        // Use warehouse to get inventory levels
-        return warehouse.incomingTransactions.groupBy { it.product.code }
-            .mapValues { (_, transactions) ->
-                transactions.fold(BigDecimal.ZERO) { acc, transaction ->
-                    acc.add(transaction.quantity)
-                }
+    fun checkLowStock(threshold: BigDecimal): List<InventoryItem> {
+        val lowStockItems = inventoryItemRepository.findItemsBelowThreshold(threshold)
+        lowStockItems.forEach { item ->
+            item.product.id?.let { productId ->
+                metricsService.recordLowStockAlert(productId)
             }
-    }
-
-    fun checkLowStock(threshold: BigDecimal): List<Map<String, Any>> {
-        return warehouseRepository.findAll().flatMap { warehouse ->
-            getInventoryLevels(warehouse.id!!)
-                .filter { it.value <= threshold }
-                .map { (productCode, quantity) ->
-                    mapOf(
-                        "warehouseId" to warehouse.id,
-                        "productCode" to productCode,
-                        "quantity" to quantity
-                    )
-                }
         }
+        return lowStockItems
     }
 
     fun generateInventoryReport(warehouseId: Long): Map<String, Any> {
+        val warehouse = warehouseRepository.findById(warehouseId)
+            .orElseThrow { NoSuchElementException("Warehouse not found") }
+
+        val inventoryItems = inventoryItemRepository.findByWarehouseId(warehouseId)
+        val totalQuantity = inventoryItems.sumOf { it.quantity }
+
+        // Record the inventory check in metrics
+        warehouse.id?.let { id ->
+            metricsService.recordInventoryCheck(id)
+            metricsService.updateInventoryLevel(id, warehouse.capacity)
+        }
+
         return mapOf(
             "timestamp" to LocalDateTime.now(),
-            "warehouseId" to warehouseId,
-            "inventoryLevels" to getInventoryLevels(warehouseId)
+            "warehouse" to mapOf(
+                "id" to warehouse.id,
+                "name" to warehouse.name,
+                "location" to warehouse.location,
+                "capacity" to warehouse.capacity
+            ),
+            "inventoryItems" to inventoryItems,
+            "totalQuantity" to totalQuantity
         )
     }
 }

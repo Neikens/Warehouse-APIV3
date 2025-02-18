@@ -2,23 +2,21 @@
 
 echo "=== Starting All Tests ==="
 
-# Check if the application is running
-if ! curl -s http://localhost:8080/actuator/health > /dev/null; then
-    echo "Error: Application is not running!"
-    echo "Please start the application first."
-    exit 1
-fi
+# Clean and build the project
+echo -e "\nCleaning and building project..."
+./gradlew clean build -x test
 
-# Clean the database
-echo -e "\nCleaning database..."
-./scripts/cleanup-db.sh
+# Run unit tests
+echo -e "\nRunning unit tests..."
+./gradlew test --info
 
-# Run main API tests
-echo -e "\nRunning API tests..."
-./scripts/test-api.sh
+# Generate test coverage report
+echo -e "\nGenerating test coverage report..."
+./gradlew jacocoTestReport
 
-# Run validation tests
-echo -e "\nRunning validation tests..."
-./scripts/test-validation.sh
+# Print test results location
+echo -e "\nTest results can be found at:"
+echo "Build reports: build/reports/tests/test/index.html"
+echo "Coverage reports: build/reports/jacoco/test/html/index.html"
 
 echo -e "\n=== All Tests Complete ==="

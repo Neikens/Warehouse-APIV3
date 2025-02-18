@@ -55,19 +55,23 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.flywaydb:flyway-core")
-    implementation("org.postgresql:postgresql")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
-    
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("com.h2database:h2")
-    testImplementation("org.mockito:mockito-core")
-    testImplementation("org.mockito:mockito-junit-jupiter")
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.3.0")
+    implementation("io.micrometer:micrometer-core")
+    implementation("io.micrometer:micrometer-registry-prometheus")
 
-    "integrationTestImplementation"("org.springframework.boot:spring-boot-starter-test")
-    "integrationTestImplementation"("org.springframework.security:spring-security-test")
-    "integrationTestImplementation"("com.h2database:h2")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("com.ninja-squad:springmockk:4.0.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 tasks.withType<KotlinCompile> {
@@ -79,6 +83,17 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+        showStandardStreams = true
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+    maxParallelForks = 1
+    failFast = true
+    systemProperty("spring.profiles.active", "test")
 }
 
 // Create the integration test task
@@ -88,12 +103,25 @@ val integrationTest = task<Test>("integrationTest") {
     testClassesDirs = sourceSets["integrationTest"].output.classesDirs
     classpath = sourceSets["integrationTest"].runtimeClasspath
     shouldRunAfter("test")
+    maxParallelForks = 1
+    failFast = true
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        showStandardStreams = true
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
 }
 
 tasks.check { dependsOn(integrationTest) }
 
 tasks.test {
     finalizedBy(tasks.jacocoTestReport)
+    systemProperties["spring.profiles.active"] = "test"
+    systemProperties["java.security.egd"] = "file:/dev/./urandom"
 }
 
 tasks.jacocoTestReport {
@@ -109,4 +137,18 @@ tasks.jacocoTestReport {
 jacoco {
     toolVersion = "0.8.11"
     reportsDirectory.set(layout.buildDirectory.dir("customJacocoReportDir"))
+}
+
+// Add this to clean the build directory before builds
+tasks.clean {
+    delete("build")
+}
+
+springBoot {
+    mainClass.set("com.warehouse.api.ApplicationKt")
+}
+
+// Add this to ensure proper cleanup
+gradle.buildFinished {
+    project.buildDir.deleteRecursively()
 }
